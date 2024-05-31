@@ -1,12 +1,13 @@
 import {
   faArrowsUpDownLeftRight,
-  faClock,
   faGear,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { imagesData, workersData } from "../constants/data";
 import { useState } from "react";
+import ViolationPopUp from "../components/ViolationPopUp";
+import Setting from "../components/Settings";
 
 const Main = () => {
   return (
@@ -62,12 +63,7 @@ const Main = () => {
 
 const Tables = () => {
   const [popupData, setPopupData] = useState(null);
-
-  const rowsArr = ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"];
-
-  const closePopUp = () => {
-    setPopupData(null);
-  };
+  const [openSettings, setOpenSettings] = useState(false);
 
   return (
     <div className="overflow-auto relative">
@@ -75,7 +71,9 @@ const Tables = () => {
         <thead>
           <tr>
             <th className="border-r-2 p-2">
-              <FontAwesomeIcon icon={faGear} />
+              <button onClick={() => setOpenSettings(!openSettings)}>
+                <FontAwesomeIcon icon={faGear} />
+              </button>
             </th>
             <th className="border-r-2 p-2 min-w-[150px]">Workers</th>
             {imagesData.map((image, i) => (
@@ -116,11 +114,22 @@ const Tables = () => {
                   />
                 </div>
               </td>
-              {rowsArr.map((row, i) => (
-                <td key={worker.id} className="border-b-2 p-2 text-center">
-                  {typeof worker.violations[i] === "object"
-                    ? worker.violations[i]
-                    : row}
+              {worker.violations.map((vio, i) => (
+                <td key={i} className="border-b-2 px-5">
+                  {vio ? (
+                    <button
+                      className={`h-8 w-8 rounded-full ${
+                        vio.length > 1
+                          ? "bg-red-500 text-white "
+                          : "bg-yellow-500 text-black"
+                      } `}
+                      onClick={() => setPopupData(vio)}
+                    >
+                      {vio.length}
+                    </button>
+                  ) : (
+                    "-"
+                  )}
                 </td>
               ))}
             </tr>
@@ -131,8 +140,8 @@ const Tables = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="relative">
             <button
-              className="absolute top-0 right-0 m-4 text-white"
-              onClick={closePopUp}
+              className="absolute top-0 right-0 m-4 text-black text-3xl font-bold"
+              onClick={() => setPopupData(null)}
             >
               &times;
             </button>
@@ -140,35 +149,7 @@ const Tables = () => {
           </div>
         </div>
       )}
-    </div>
-  );
-};
-
-const ViolationPopUp = ({ data }) => {
-  console.log(data);
-  // const dataArr = [...data];
-  return (
-    <div className="w-[296px] h-[556px] bg-white p-4 shadow-lg rounded-lg overflow-y-auto">
-      <div className="mb-4">
-        <img
-          src="workerimg.png"
-          alt="worker image"
-          className="w-full h-48 object-cover rounded-lg mb-4"
-        />
-        <div className="flex justify-between items-center mb-2">
-          <h1 className="text-lg font-semibold">Comment</h1>
-          <div className="flex items-center space-x-2">
-            <p className="flex items-center text-sm text-gray-600">
-              <FontAwesomeIcon icon={faClock} className="mr-1" />
-              {data.date}
-            </p>
-            <p className="text-sm text-gray-600">#{data.number}</p>
-          </div>
-        </div>
-        <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
-          {data.description}
-        </p>
-      </div>
+      <Setting settingOn={openSettings} />
     </div>
   );
 };

@@ -1,12 +1,8 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 const ViolationPopUp = ({ data }) => {
-  if (!Array.isArray(data)) {
-    console.error("Data is not an array:", data);
-    return null;
-  }
+  console.log(data);
 
   return (
     <div className="w-[296px] h-[556px] bg-white p-4 shadow-lg rounded-lg overflow-y-auto">
