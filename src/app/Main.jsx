@@ -1,15 +1,21 @@
+import React, { useState } from "react";
+import { Calendar } from "primereact/calendar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowsUpDownLeftRight,
   faGear,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { imagesData, workersData } from "../constants/data";
-import { useState } from "react";
 import ViolationPopUp from "../components/ViolationPopUp";
 import Setting from "../components/Settings";
+import "primereact/resources/themes/saga-blue/theme.css"; // or any other theme
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const Main = () => {
+  const [dates, setDates] = useState(null);
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen border-l-2 max-w-full">
       <div className="flex justify-between items-center mb-6">
@@ -28,12 +34,19 @@ const Main = () => {
               className="ml-2 outline-none p-1"
             />
           </label>
-          <input
-            type="date"
-            name="date"
-            id="date"
-            className="border-2 border-gray-300 rounded px-2 py-1"
-          />
+
+          <div className="card flex justify-content-center custom-calendar">
+            <Calendar
+              value={dates}
+              onChange={(e) => setDates(e.value)}
+              selectionMode="range"
+              readOnlyInput
+              hideOnRangeSelection
+              inputClassName="p-inputtext p-component w-64 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300 focus:border-blue-300"
+              className="custom-calendar"
+            />
+          </div>
+
           <select
             name="workers"
             id="workers"
@@ -120,9 +133,9 @@ const Tables = () => {
                     <button
                       className={`h-8 w-8 rounded-full ${
                         vio.length > 1
-                          ? "bg-red-500 text-white "
+                          ? "bg-red-500 text-white"
                           : "bg-yellow-500 text-black"
-                      } `}
+                      }`}
                       onClick={() => setPopupData(vio)}
                     >
                       {vio.length}
