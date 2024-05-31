@@ -1,23 +1,6 @@
-import { useState } from "react";
 import { imagesData } from "../constants/data";
 
-const Setting = ({ settingOn }) => {
-  const [checkedItems, setCheckedItems] = useState(imagesData);
-
-  const handleChange = (event) => {
-    const { name, checked } = event.target;
-    setCheckedItems((prevState) => ({
-      ...prevState,
-      [name]: checked,
-    }));
-    console.log(imagesData);
-  };
-
-  //   const updatedImagesData = imagesData.map((item) => ({
-  //     ...item,
-  //     checked: checkedItems[item.name],
-  //   }));
-
+const Setting = ({ settingOn, data, handleCheckboxChange }) => {
   return (
     <div>
       {settingOn && (
@@ -26,16 +9,16 @@ const Setting = ({ settingOn }) => {
             Select columns to display
           </h1>
           <ul className="space-y-2">
-            {imagesData.map((item, index) => (
+            {data.map((item, index) => (
               <li key={index}>
                 <label htmlFor={item.name} className="flex items-center">
                   <input
                     type="checkbox"
                     name={item.name}
                     id={item.name}
-                    className="mr-2"
-                    checked={checkedItems[item.name]}
-                    onChange={handleChange}
+                    className="mr-2 custom-checkbox"
+                    checked={item.checked}
+                    onChange={() => handleCheckboxChange(item.name)}
                   />
                   {item.name}
                 </label>

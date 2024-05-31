@@ -18,8 +18,8 @@ const Main = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen border-l-2 max-w-full">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-700">
+      <div className="lg:flex justify-between items-center mb-6">
+        <h1 className="lg:text-2xl font-bold text-gray-700 ">
           P.R.E Violations Table
         </h1>
         <form className="flex items-center text-gray-500 space-x-4">
@@ -76,6 +76,15 @@ const Main = () => {
 const Tables = () => {
   const [popupData, setPopupData] = useState(null);
   const [openSettings, setOpenSettings] = useState(false);
+  const [colums, setColumns] = useState(imagesData);
+
+  const handleCheckboxChange = (col) => {
+    const updatedCols = colums.map((item) =>
+      item.name === col ? { ...item, checked: !item.checked } : item
+    );
+    setColumns(updatedCols);
+    console.log(colums);
+  };
 
   return (
     <div className="overflow-auto relative">
@@ -88,7 +97,7 @@ const Tables = () => {
               </button>
             </th>
             <th className="border-r-2 p-2 min-w-[150px]">Workers</th>
-            {imagesData.map((image, i) => (
+            {colums.map((image, i) => (
               <th key={i} className="border-b-2 p-2">
                 <div className="flex flex-col items-center">
                   <img
@@ -161,7 +170,11 @@ const Tables = () => {
           </div>
         </div>
       )}
-      <Setting settingOn={openSettings} />
+      <Setting
+        settingOn={openSettings}
+        handleCheckboxChange={handleCheckboxChange}
+        data={colums}
+      />
     </div>
   );
 };

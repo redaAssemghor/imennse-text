@@ -51,11 +51,6 @@ const Header = ({ toggleSidebar }) => {
             </li>
           </ul>
           <LanguagesDropDown />
-          {/* <div className="flex items-center">
-            <button onClick={handleLanguage}>
-              <img src={languageIcon} alt="en language" className="h-5 " />
-            </button>
-          </div> */}
 
           <button className="flex gap-3 items-center" onClick={handleProfile}>
             <img
@@ -74,7 +69,6 @@ const Header = ({ toggleSidebar }) => {
           </button>
         </div>
         {toggled && <DropDown />}
-        {/* {language && <LanguagesDropDown />} */}
       </div>
       <HeadersList />
     </div>
