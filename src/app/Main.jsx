@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Calendar } from "primereact/calendar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,7 +9,7 @@ import {
 import { imagesData, workersData } from "../constants/data";
 import ViolationPopUp from "../components/ViolationPopUp";
 import Setting from "../components/Settings";
-import "primereact/resources/themes/saga-blue/theme.css"; // or any other theme
+import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 
@@ -43,7 +43,6 @@ const Main = () => {
               readOnlyInput
               hideOnRangeSelection
               inputClassName="p-inputtext p-component w-64 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300 focus:border-blue-300"
-              className="custom-calendar"
             />
           </div>
 

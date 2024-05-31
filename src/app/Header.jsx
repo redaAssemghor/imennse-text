@@ -11,19 +11,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import LanguagesDropDown from "../components/LanguagesDropDown";
 
 const Header = ({ toggleSidebar }) => {
   const [toggled, setToggled] = useState(false);
-  const [language, setLanguage] = useState(false);
 
   const handleProfile = () => {
     setToggled(!toggled);
-    setLanguage(false);
-  };
-
-  const handleLanguage = () => {
-    setLanguage(!language);
-    setToggled(false);
   };
 
   return (
@@ -56,11 +50,12 @@ const Header = ({ toggleSidebar }) => {
               </button>
             </li>
           </ul>
-          <div className="flex items-center">
+          <LanguagesDropDown />
+          {/* <div className="flex items-center">
             <button onClick={handleLanguage}>
-              <img src="/en.png" alt="en language" className="h-5 " />
+              <img src={languageIcon} alt="en language" className="h-5 " />
             </button>
-          </div>
+          </div> */}
 
           <button className="flex gap-3 items-center" onClick={handleProfile}>
             <img
@@ -79,7 +74,7 @@ const Header = ({ toggleSidebar }) => {
           </button>
         </div>
         {toggled && <DropDown />}
-        {language && <LanguagesDropDown />}
+        {/* {language && <LanguagesDropDown />} */}
       </div>
       <HeadersList />
     </div>
@@ -122,56 +117,22 @@ function DropDown() {
       </div>
       <ul className="py-5 border-b-2">
         <li className="flex gap-3 items-center">
-          <FontAwesomeIcon icon={faGear} />
-          Profile Settings
+          <a href="/Profile-Settings">
+            <FontAwesomeIcon icon={faGear} />
+            Profile Settings
+          </a>
         </li>
         <li className="flex gap-3 items-center">
-          <FontAwesomeIcon icon={faShield} />
-          Our policies
+          <a href="policies">
+            <FontAwesomeIcon icon={faShield} />
+            Our policies
+          </a>
         </li>
       </ul>
       <button className="flex gap-3 items-center mt-3">
         <FontAwesomeIcon icon={faRightFromBracket} />
         Log out
       </button>
-    </div>
-  );
-}
-function LanguagesDropDown() {
-  return (
-    <div className="text-gray-500 border-2 rounded-lg p-4 w-[190px] absolute lg:right-52 right-2 top-16 z-10 bg-white">
-      <ul className="">
-        <li className="flex gap-3 items-center mb-3">
-          <button>
-            <img src="/en.png" alt="English language" className="h-5" />
-          </button>
-          <p>English (en)</p>
-        </li>
-        <li className="flex gap-3 items-center mb-3">
-          <button>
-            <img src="/fr.png" alt="French language" className="h-5" />
-          </button>
-          <p>français (FR)</p>
-        </li>
-        <li className="flex gap-3 items-center mb-3">
-          <button>
-            <img src="/ne.png" alt="Dutch language" className="h-5" />
-          </button>
-          <p>Nederlands (NL)</p>
-        </li>
-        <li className="flex gap-3 items-center mb-3">
-          <button>
-            <img src="/es.png" alt="Spanish language" className="h-5" />
-          </button>
-          <p>Española (ES)</p>
-        </li>
-        <li className="flex gap-3 items-center mb-3">
-          <button>
-            <img src="/de.png" alt="German language" className="h-5" />
-          </button>
-          <p>Deutsch (DE)</p>
-        </li>
-      </ul>
     </div>
   );
 }
