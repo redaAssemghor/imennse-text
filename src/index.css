@@ -15,7 +15,7 @@
   height: 0.25rem;
   border: solid white;
   border-width: 0 2px 2px 0;
-  transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(40deg);
 }
 
 .scrollbar-webkit::-webkit-scrollbar {

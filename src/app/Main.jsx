@@ -12,6 +12,7 @@ import Setting from "../components/Settings";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import { FloatLabel } from "primereact/floatlabel";
 
 const Main = () => {
   const [dates, setDates] = useState(null);
@@ -36,14 +37,18 @@ const Main = () => {
           </label>
 
           <div className="card flex justify-content-center custom-calendar">
-            <Calendar
-              value={dates}
-              onChange={(e) => setDates(e.value)}
-              selectionMode="range"
-              readOnlyInput
-              hideOnRangeSelection
-              inputClassName="p-inputtext p-component w-64 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300 focus:border-blue-300"
-            />
+            <FloatLabel>
+              <Calendar
+                inputId="date-range"
+                value={dates}
+                onChange={(e) => setDates(e.value)}
+                selectionMode="range"
+                readOnlyInput
+                hideOnRangeSelection
+                inputClassName="p-inputtext p-component w-64 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300 focus:border-blue-300"
+              />
+              <label htmlFor="date-range">Date Range</label>
+            </FloatLabel>
           </div>
 
           <select
