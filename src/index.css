@@ -17,3 +17,31 @@
   border-width: 0 2px 2px 0;
   transform: translate(-50%, -50%) rotate(45deg);
 }
+
+.scrollbar-webkit::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-webkit::-webkit-scrollbar-track {
+  background: white;
+}
+
+.scrollbar-webkit::-webkit-scrollbar-thumb {
+  background-color: rgb(138, 140, 144);
+  border-radius: 20px;
+  border: 1px solid white;
+}
+
+.scrollbar-thumb-rounded::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-thumb-rounded::-webkit-scrollbar-track {
+  background: white;
+}
+
+.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+  background-color: rgb(31 41 55);
+  border-radius: 10px;
+  border: 1px solid white;
+}

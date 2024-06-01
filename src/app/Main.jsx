@@ -161,7 +161,7 @@ const Tables = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="relative">
             <button
-              className="absolute top-0 right-0 m-4 text-black text-3xl font-bold"
+              className="absolute top-0 right-0 m-4 text-black text-5xl font-extrabold z-10"
               onClick={() => setPopupData(null)}
             >
               &times;

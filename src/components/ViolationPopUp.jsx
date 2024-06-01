@@ -5,7 +5,7 @@ const ViolationPopUp = ({ data }) => {
   console.log(data);
 
   return (
-    <div className="w-[296px] h-[556px] bg-white p-4 shadow-lg rounded-lg overflow-y-auto">
+    <div className="w-[296px] h-[556px] bg-white p-4 shadow-lg rounded-lg overflow-y-auto scrollbar-webkit">
       {data.map((el, i) => (
         <div key={i} className="mb-4">
           <img

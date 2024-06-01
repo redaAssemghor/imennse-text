@@ -11,7 +11,7 @@ function App() {
       <Sidebar open={sidebarOpen} />
       <div className="flex flex-col overflow-hidden">
         <Header toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
-        <main className="flex-grow overflow-auto">
+        <main className="flex-grow overflow-auto scrollbar-webkit">
           <Main />
         </main>
       </div>
